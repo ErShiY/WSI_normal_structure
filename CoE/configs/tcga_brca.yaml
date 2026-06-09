@@ -1,0 +1,55 @@
+dataset: tcga-brca
+task: slide
+fold: 6
+
+path:
+  csv: "I:/MM_Six/data_splits_tcga_brca_folds"
+  pt: "H:/TCGA-BRCA R50/pt_files"
+  h5: ""
+
+train:
+  batch_size: 1
+  num_workers: 0
+  epochs: 5
+  device: "cuda"
+
+model:
+  name: attention_mil
+  input_dim: 1024
+  hidden_dim: 512
+  dropout: 0.25
+  num_classes: 2
+
+loss:
+  name: ce
+
+optimizer:
+  name: adamw
+  lr: 0.0001
+  weight_decay: 0.00001
+
+checkpoint:
+  save_dir: "outputs/checkpoints"
+  monitor: "macro_f1"
+  mode: "max"
+  save_best: true
+
+log:
+  save_dir: "outputs/logs"
+  filename: "train_log.csv"
+
+scheduler:
+  name: steplr
+  step_size: 50
+  gamma: 0.1
+
+early_stopping:
+  enable: true
+  monitor: "macro_f1"
+  mode: "max"
+  patience: 2
+  min_delta: 0.01
+
+results:
+  save_dir: "outputs/results"
+  filename: "test_results.csv"

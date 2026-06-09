@@ -1,0 +1,2 @@
+dataset,task,fold,model,checkpoint_epoch,test_loss,test_acc,test_precision,test_recall,test_macro_f1
+tcga-brca,slide,6,attention_mil,1,0.5797485378053453,0.8888888888888888,0.4444444444444444,0.5,0.47058823529411764
